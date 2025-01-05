@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, Any
 
 @dataclass
@@ -9,11 +9,11 @@ class Config:
     LOG_FILE: str = "cpu_scheduler.log"
 
     # Visualization configuration
-    GANTT_CHART_COLORS: Dict[str, str] = {
+    GANTT_CHART_COLORS: Dict[str, str] = field(default_factory=lambda: {
         "running": "#2ecc71",
         "waiting": "#e74c3c",
         "ready": "#3498db",
-    }
+    })
     
     # Default scheduling parameters
     DEFAULT_TIME_QUANTUM: int = 4
@@ -24,5 +24,6 @@ class Config:
     
     @classmethod
     def get_config(cls) -> Dict[str, Any]:
+        """Return all configuration as dictionary"""
         return {k: v for k, v in cls.__dict__.items() 
                 if not k.startswith('_')}
