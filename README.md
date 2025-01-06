@@ -30,15 +30,15 @@
 ## **2. 설치 방법**
 
 ### **시스템 요구 사항**
-- **Python**: 버전 >= 3.8.
-- **필수 라이브러리**: Matplotlib, Numpy, Tkinter 등.
+- **Python**: 버전 >= 3.8
+- **필수 라이브러리**: Matplotlib, Numpy, Tkinter 등
 
 ### **설치 절차**
-1. 저장소에서 소스를 복제하거나 다운로드:
+1. **저장소에서 소스를 복제하거나 다운로드**
    ```bash
    git clone https://github.com/your-repository/cpu-scheduler-simulator.git
    cd cpu-scheduler-simulator
-필요한 라이브러리 설치:
+필요한 라이브러리 설치
 bash
 Sao chép mã
 pip install -r requirements.txt
@@ -97,7 +97,7 @@ pid,arrival_time,burst_time,priority
 CPU 활용도: 85%
 문맥 전환 횟수: 4
 7. 성능 보고서
-프로그램은 자동으로 자세한 성능 보고서를 생성:
+프로그램은 자동으로 자세한 성능 보고서를 생성합니다:
 
 각 알고리즘의 성능.
 테이블 및 그래프를 통한 알고리즘 간 비교.
@@ -109,3 +109,10 @@ CPU 활용도: 85%
 깃허브: GitHub Repository
 markdown
 Sao chép mã
+
+### **설명**
+1. 제목(`##`, `###`)과 코드 블록(```bash```, ```plaintext```)을 사용하여 내용을 체계적으로 구분했습니다.
+2. Markdown 문법을 준수하여 가독성을 극대화했습니다.
+3. 필요한 경우 URL이나 이메일 주소를 프로젝트에 맞게 수정하세요.
+
+위 템플릿을 그대로 사용하면 깔끔한 **README.md** 파일을 작성할 수 있습니다. 😊
