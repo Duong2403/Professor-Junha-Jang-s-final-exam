@@ -38,17 +38,14 @@
    ```bash
    git clone https://github.com/your-repository/cpu-scheduler-simulator.git
    cd cpu-scheduler-simulator
-필요한 라이브러리 설치
-bash
-Sao chép mã
-pip install -r requirements.txt
+   
+2. 필요한 라이브러리 설치
+  pip install -r requirements.txt
+
 3. 프로그램 실행 방법
 프로그램 시작
 프로젝트 루트에서 다음 명령을 실행하세요:
 
-bash
-Sao chép mã
-python main.py
 4. 사용 방법
 1단계: 데이터 입력 방법 선택
 수동 입력: ID, Arrival Time, Burst Time, Priority 정보를 입력.
