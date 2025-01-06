@@ -40,5 +40,51 @@
    cd cpu-scheduler-simulator
 3. 필요한 라이브러리 설치:
    pip install -r requirements.txt
+4. 사용 방법
+1단계: 데이터 입력 방법 선택
 
+수동 입력: 프로세스의 ID, Arrival Time, Burst Time, Priority 정보를 직접 입력.
+랜덤 생성: 프로세스 개수와 최대값을 설정하여 자동 생성.
+파일 입력: CSV 또는 JSON 형식의 파일을 불러오기.
+
+2단계: 스케줄링 알고리즘 선택
+
+사용할 알고리즘 선택:
+
+FCFS, SJF, Round Robin, Priority Scheduling 등
+
+
+알고리즘별 매개변수 설정:
+
+Quantum (Round Robin의 경우)
+큐 개수 (다단계 피드백 큐의 경우)
+
+
+
+3단계: 스케줄링 시뮬레이션
+
+Start 버튼을 눌러 시뮬레이션 시작
+다음 정보 확인:
+
+간트 차트 (Gantt Chart): 프로세스 실행 순서 시각화
+I/O 작업 로그 (I/O Operations Log): I/O 활동 기록
+성능 지표 (Performance Metrics): 알고리즘 성능 정보
+
+
+
+4단계: 분석 및 결과 출력
+
+평균 대기 시간, 처리량, 문맥 전환 횟수 등 지표 확인
+필요 시 보고서로 저장
+
+5. 프로젝트 구조
+cpu-scheduler-simulator/
+├── main.py # 메인 실행 파일
+├── requirements.txt # 필수 라이브러리 목록
+├── src/
+│   ├── process/ # 프로세스 및 상태 정의
+│   ├── schedulers/ # 스케줄링 알고리즘
+│   ├── utils/ # 유틸리티 및 성능 계산
+│   ├── visualization/ # 간트 차트 시각화
+└── README.md # 사용 설명서
    
