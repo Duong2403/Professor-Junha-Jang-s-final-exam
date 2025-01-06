@@ -77,7 +77,7 @@ I/O 작업 로그 (I/O Operations Log): I/O 활동 기록
 평균 대기 시간, 처리량, 문맥 전환 횟수 등 지표 확인
 필요 시 보고서로 저장
 
-5. 프로젝트 구조
+### ** 5. 프로젝트 구조**
 cpu-scheduler-simulator/
 ├── main.py # 메인 실행 파일
 ├── requirements.txt # 필수 라이브러리 목록
