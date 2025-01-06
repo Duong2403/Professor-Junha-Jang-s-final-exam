@@ -21,6 +21,11 @@ from src.utils.metrics import SchedulingMetrics
 from src.interrupt.timer import TimerInterrupt
 from src.process.process import Process
 from src.process.process_state import ProcessState
+# Import cho Rate Monotonic Scheduler
+from src.schedulers.realtime.rate_monotonic import RateMonotonicScheduler
+
+# Import cho Earliest Deadline First Scheduler
+from src.schedulers.realtime.earliest_deadline import EarliestDeadlineFirstScheduler
 
 class CPUSchedulerGUI:
     def __init__(self, root):
@@ -236,7 +241,45 @@ class CPUSchedulerGUI:
         # File Import Fields
         self.file_frame = ttk.Frame(input_frame)
         self.setup_file_input_fields()
-        
+
+    def add_process(self, process: Process, **kwargs) -> None:
+        """
+        Thêm tiến trình vào scheduler với các tham số cần thiết.
+
+        Args:
+            process: Tiến trình cần thêm.
+            kwargs: Tham số bổ sung cho các thuật toán đặc biệt.
+                - `period`: Chu kỳ của tiến trình (dành cho Rate Monotonic).
+                - `deadline`: Deadline của tiến trình (dành cho Earliest Deadline First).
+        """
+        # Kiểm tra nếu cần thêm tham số 'period' hoặc 'deadline'
+        if isinstance(self, RateMonotonicScheduler):
+            if 'period' not in kwargs:
+                raise ValueError("Rate Monotonic Scheduler yêu cầu tham số 'period'")
+            period = kwargs['period']
+            self.processes.append(process)
+            self.process_periods[process.pid] = period
+            # Gán ưu tiên dựa trên chu kỳ
+            process.priority = period
+
+        elif isinstance(self, EarliestDeadlineFirstScheduler):
+            if 'deadline' not in kwargs or 'period' not in kwargs:
+                raise ValueError("Earliest Deadline First Scheduler yêu cầu 'deadline' và 'period'")
+            deadline = kwargs['deadline']
+            period = kwargs['period']
+            self.processes.append(process)
+            self.deadlines[process.pid] = process.arrival_time + deadline
+            self.periods[process.pid] = period
+
+        else:
+            # Dành cho các thuật toán cơ bản (FCFS, SJF, Round Robin, Priority)
+            self.processes.append(process)
+            if isinstance(self, PriorityScheduler):
+                # Nếu là Priority Scheduler, kiểm tra thêm thông tin ưu tiên
+                if not hasattr(process, 'priority'):
+                    raise ValueError("Priority Scheduler yêu cầu 'priority' cho mỗi tiến trình")
+
+
     def setup_manual_input_fields(self):
         fields = [
             ("Process ID:", "pid_var"),
@@ -558,44 +601,55 @@ class CPUSchedulerGUI:
                   command=lambda: self.save_report(report)).pack(pady=5)
 
     def compare_all_schedulers(self):
-        """Enhanced scheduler comparison"""
+        """So sánh tất cả các thuật toán lập lịch"""
         if not self.processes:
-            messagebox.showwarning("Warning", "Please add processes first")
+            messagebox.showwarning("Warning", "Vui lòng thêm tiến trình trước.")
             return
-            
-        # Store original processes
+
+        # Lưu các tiến trình gốc
         original_processes = self.processes.copy()
-        
-        # Compare all scheduling algorithms
-        comparison_data = {}
+
+        # Danh sách thuật toán
         schedulers = [
             'FCFS', 'SJF', 'Round Robin', 'Priority (Non-preemptive)',
             'Priority (Preemptive)', 'Multi-Level Queue', 'Rate Monotonic',
             'Earliest Deadline First'
         ]
-        
+
+        comparison_data = {}
+
         for scheduler_type in schedulers:
-            # Create scheduler and run simulation
             scheduler = self.create_scheduler(scheduler_type)
             processes_copy = self.clone_processes(original_processes)
-            
-            for process in processes_copy:
-                scheduler.add_process(process)
-                
-            # Run simulation to completion
+            if scheduler_type == 'Rate Monotonic':
+                # Gán period tạm thời cho Rate Monotonic
+                period = 10  # Giá trị mặc định hoặc cần xác định cách lấy giá trị phù hợp
+                for process in processes_copy:
+                    scheduler.add_process(process, period)
+            elif scheduler_type == 'Earliest Deadline First':
+                # Gán period và deadline tạm thời cho EDF
+                period = 10
+                deadline = 8
+                for process in processes_copy:
+                    scheduler.add_process(process, deadline=deadline, period=period)
+            else:
+                # Các thuật toán khác không yêu cầu thêm tham số
+                for process in processes_copy:
+                    scheduler.add_process(process)
+
+            # Chạy mô phỏng
             while not scheduler.is_all_completed():
                 scheduler.run_step()
-                
-            # Calculate comprehensive metrics
+
+            # Tính toán metrics
             metrics = self.calculate_detailed_metrics(scheduler)
             comparison_data[scheduler_type] = metrics
-            
-        # Restore original processes
-        self.processes = original_processes
-        
-        # Show detailed comparison
-        self.show_detailed_comparison(comparison_data)
 
+        # Khôi phục các tiến trình ban đầu
+        self.processes = original_processes
+
+        # Hiển thị kết quả
+        self.show_detailed_comparison(comparison_data)
 
 
     def update_timeline(self):
@@ -838,14 +892,14 @@ class CPUSchedulerGUI:
         return "\n".join(analysis)
 
     def clone_processes(self, processes):
-        """Create deep copy of processes for comparison"""
+        """Tạo bản sao của danh sách tiến trình"""
         return [Process(
             pid=p.pid,
             arrival_time=p.arrival_time,
             burst_time=p.burst_time,
-            priority=p.priority,
+            priority=p.priority
         ) for p in processes]
-        
+
     def save_report(self, report_content):
         """Save simulation report to file"""
         filename = filedialog.asksaveasfilename(
@@ -983,47 +1037,7 @@ class CPUSchedulerGUI:
             self.log_text.see(tk.END)
 
 
-    def add_process(self):
-        """Add new process from manual input fields"""
-        try:
-            # Create new process
-            process = Process(
-                pid=int(self.pid_var.get()),
-                arrival_time=int(self.arrival_var.get()),
-                burst_time=int(self.burst_var.get()),
-                priority=int(self.priority_var.get())
-            )
-            
-            # Add I/O operations if specified
-            if hasattr(self, 'io_time_var') and hasattr(self, 'io_duration_var'):
-                io_time = self.io_time_var.get()
-                io_duration = self.io_duration_var.get()
-                if io_time and io_duration:
-                    io_op = {
-                        'start_time': int(io_time),
-                        'duration': int(io_duration),
-                        'completed': False
-                    }
-                    if not hasattr(process, 'io_operations'):
-                        process.io_operations = []
-                    process.io_operations.append(io_op)
-            
-            # Add process to list
-            self.processes.append(process)
-            self.update_process_table()
-            self.clear_input_fields()
-            
-            self.log_event(
-                f"Added Process {process.pid} "
-                f"(Arrival: {process.arrival_time}, Burst: {process.burst_time}, "
-                f"Priority: {process.priority})"
-            )
-            
-        except ValueError:
-            messagebox.showerror(
-                "Input Error",
-                "Please enter valid numbers for all fields"
-            )
+    
 
     def clear_input_fields(self):
         """Clear all manual input fields"""
@@ -1597,67 +1611,71 @@ class CPUSchedulerGUI:
 
 
     def create_scheduler(self, scheduler_type: str):
-        """Create appropriate scheduler instance based on selected type"""
+        """
+        Tạo đối tượng scheduler phù hợp dựa trên loại đã chọn
+
+        Args:
+            scheduler_type: Tên thuật toán lập lịch
+
+        Returns:
+            Đối tượng scheduler
+        """
         try:
-            # Get time quantum for schedulers that need it
+            # Lấy giá trị quantum cho các thuật toán cần
             quantum = int(self.quantum_var.get())
             if quantum <= 0:
-                raise ValueError("Time quantum must be greater than 0")
-                
-            # Get context switch overhead
+                raise ValueError("Quantum phải lớn hơn 0")
+            
+            # Lấy giá trị context switch overhead
             context_switch = int(self.context_switch_var.get())
             if context_switch < 0:
-                raise ValueError("Context switch overhead cannot be negative")
-                
-            # Create appropriate scheduler based on type
+                raise ValueError("Context switch overhead không thể âm")
+
             if scheduler_type == 'FCFS':
                 scheduler = FCFSScheduler()
-                
+
             elif scheduler_type == 'SJF':
                 scheduler = SJFScheduler()
-                
+
             elif scheduler_type == 'Round Robin':
                 scheduler = RoundRobinScheduler(time_quantum=quantum)
-                
+
             elif scheduler_type == 'Priority (Non-preemptive)':
                 scheduler = PriorityScheduler(preemptive=False)
-                
+
             elif scheduler_type == 'Priority (Preemptive)':
                 scheduler = PriorityScheduler(preemptive=True)
-                
+
             elif scheduler_type == 'Multi-Level Queue':
                 scheduler = MLFQScheduler(
-                    num_queues=3,  # Can be made configurable
+                    num_queues=3,  # Có thể cấu hình
                     base_quantum=quantum
                 )
-                
+
             elif scheduler_type == 'Rate Monotonic':
-                # Import locally to avoid circular imports
-                from src.schedulers.realtime.rate_monotonic import RateMonotonicScheduler
                 scheduler = RateMonotonicScheduler()
-                
+
             elif scheduler_type == 'Earliest Deadline First':
-                # Import locally to avoid circular imports
-                from src.schedulers.realtime.earliest_deadline import EarliestDeadlineFirstScheduler
                 scheduler = EarliestDeadlineFirstScheduler()
-                
+
             else:
-                raise ValueError(f"Unknown scheduler type: {scheduler_type}")
-                
-            # Configure common settings if scheduler has the attributes
+                raise ValueError(f"Loại scheduler không hợp lệ: {scheduler_type}")
+
+            # Cấu hình chung nếu có
             for attr in ['context_switch_penalty', 'context_switch_overhead']:
                 if hasattr(scheduler, attr):
                     setattr(scheduler, attr, context_switch)
-                    
-            self.log_event(f"Created {scheduler_type} scheduler (Quantum={quantum}, CS={context_switch})")
+
+            self.log_event(f"Tạo scheduler {scheduler_type} (Quantum={quantum}, CS={context_switch})")
             return scheduler
-            
+
         except (ValueError, AttributeError) as e:
             messagebox.showerror(
-                "Scheduler Creation Error",
+                "Lỗi tạo scheduler",
                 str(e)
             )
             return None
+
 
     def get_scheduler_description(self, scheduler_type: str) -> str:
         """Get description of selected scheduler"""
