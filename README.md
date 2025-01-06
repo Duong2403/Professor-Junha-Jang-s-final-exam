@@ -6,7 +6,7 @@
 
 이 프로그램은 CPU 스케줄링 알고리즘을 시뮬레이션하여 사용자에게 다음과 같은 도움을 제공합니다:
 - CPU 스케줄링 알고리즘의 동작 원리 이해.
-- 다양한 알고리즘의 성능을 다음과 같은 주요 지표를 기반으로 비교:
+- 다양한 알고리즘의 성능을 주요 지표를 기반으로 비교:
   - **평균 대기 시간 (Average Waiting Time).**
   - **평균 반환 시간 (Average Turnaround Time).**
   - **문맥 전환 횟수 (Context Switches).**
@@ -30,43 +30,11 @@
 ## **2. 설치 방법**
 
 ### **시스템 요구 사항**
-- **Python**: 버전 >= 3.8
-- **필수 라이브러리**: Matplotlib, Numpy, Tkinter 등
+- **Python**: 버전 >= 3.8.
+- **필수 라이브러리**: Matplotlib, Numpy, Tkinter 등.
 
 ### **설치 절차**
-1. **저장소에서 소스를 복제하거나 다운로드**
+1. 저장소에서 소스를 복제하거나 다운로드:
    ```bash
    git clone https://github.com/your-repository/cpu-scheduler-simulator.git
    cd cpu-scheduler-simulator
-   
-2. 필요한 라이브러리 설치
-  pip install -r requirements.txt
-
-3. 프로그램 실행 방법
-프로그램 시작
-프로젝트 루트에서 다음 명령을 실행하세요:
-
-사용 방법
-1단계: 데이터 입력 방법 선택
-
-수동 입력: ID, Arrival Time, Burst Time, Priority 정보를 입력합니다.
-랜덤 생성: 프로세스 개수와 최대값을 설정하여 데이터를 생성합니다.
-파일 입력: CSV 또는 JSON 형식의 파일을 가져옵니다.
-2단계: 스케줄링 알고리즘 선택
-
-사용할 알고리즘을 선택합니다: FCFS, SJF, Round Robin, Priority Scheduling 등.
-매개변수를 설정합니다:
-Quantum (Round Robin의 경우)
-큐 개수 (다단계 피드백 큐의 경우)
-3단계: 스케줄링 시뮬레이션
-
-Start 버튼을 눌러 시뮬레이션을 시작합니다.
-다음 정보를 확인합니다:
-간트 차트 (Gantt Chart): 프로세스 실행 순서 시각화.
-I/O 작업 로그 (I/O Operations Log): I/O 활동 기록.
-성능 지표 (Performance Metrics): 알고리즘 성능 정보.
-4단계: 분석 및 결과 출력
-
-평균 대기 시간, 처리량, 문맥 전환 횟수 등 지표를 확인합니다.
-필요 시 보고서를 저장합니다.
-
