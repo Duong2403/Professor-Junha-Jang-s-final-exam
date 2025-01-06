@@ -111,9 +111,7 @@ cpu-scheduler-simulator/
 3. **CPU 활용도 (CPU Utilization)**
 4. **문맥 전환 횟수 (Context Switch Count)**
 
-##  결과
 
-https://drive.google.com/file/d/1ESOykBJAOs3usVaTxza59al0CcCc3mu1/view?usp=drive_link
 
 
 
