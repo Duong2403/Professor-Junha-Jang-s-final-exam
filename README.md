@@ -1,111 +1,121 @@
-CPU Scheduler Simulator
-1. Mục Đích
-Chương trình mô phỏng các thuật toán lập lịch CPU, hỗ trợ người dùng:
+# CPU 스케줄러 시뮬레이터
 
-Hiểu rõ cơ chế hoạt động của các thuật toán lập lịch CPU.
-So sánh hiệu năng giữa các thuật toán qua các chỉ số:
-Thời gian chờ trung bình (Average Waiting Time).
-Thời gian quay vòng trung bình (Average Turnaround Time).
-Số lần chuyển ngữ cảnh (Context Switches).
-Hiệu suất sử dụng CPU (CPU Utilization).
-Hỗ trợ các thuật toán:
-FCFS (First Come First Serve).
-SJF (Shortest Job First).
-Round Robin.
-Priority Scheduling (Preemptive & Non-Preemptive).
-Multi-Level Feedback Queue.
-Rate Monotonic (Real-time).
-Earliest Deadline First (Real-time).
-Ngoài ra, chương trình cung cấp các tiện ích:
+---
 
-Nhập dữ liệu thủ công, tạo dữ liệu ngẫu nhiên, hoặc nhập từ file (CSV, JSON).
-Xuất kết quả và báo cáo.
-2. Cách Cài Đặt
-Yêu Cầu Hệ Thống
-Python: Phiên bản >= 3.8.
-Các thư viện cần thiết: Matplotlib, Numpy, Tkinter, v.v.
-Các Bước Cài Đặt
-Clone hoặc tải mã nguồn từ repository:
-bash
-Sao chép mã
-git clone https://github.com/your-repository/cpu-scheduler-simulator.git
-cd cpu-scheduler-simulator
-Cài đặt các thư viện bằng lệnh:
+## **1. 목적**
+
+이 프로그램은 CPU 스케줄링 알고리즘을 시뮬레이션하여 사용자에게 다음과 같은 도움을 제공합니다:
+- CPU 스케줄링 알고리즘의 동작 원리 이해.
+- 다양한 알고리즘의 성능을 주요 지표를 기반으로 비교:
+  - **평균 대기 시간 (Average Waiting Time).**
+  - **평균 반환 시간 (Average Turnaround Time).**
+  - **문맥 전환 횟수 (Context Switches).**
+  - **CPU 활용도 (CPU Utilization).**
+
+### **지원되는 알고리즘**
+1. **FCFS (First Come First Serve).**
+2. **SJF (Shortest Job First).**
+3. **Round Robin.**
+4. **우선순위 스케줄링 (Priority Scheduling)** (선점 및 비선점).
+5. **다단계 피드백 큐 (Multi-Level Feedback Queue).**
+6. **Rate Monotonic (실시간).**
+7. **Earliest Deadline First (실시간).**
+
+추가적으로, 프로그램은 다음과 같은 유용한 기능을 제공합니다:
+- 수동 데이터 입력, 랜덤 데이터 생성, CSV 또는 JSON 파일을 통한 데이터 가져오기.
+- 결과 및 보고서 내보내기.
+
+---
+
+## **2. 설치 방법**
+
+### **시스템 요구 사항**
+- **Python**: 버전 >= 3.8.
+- **필수 라이브러리**: Matplotlib, Numpy, Tkinter 등.
+
+### **설치 절차**
+1. 저장소에서 소스를 복제하거나 다운로드:
+   ```bash
+   git clone https://github.com/your-repository/cpu-scheduler-simulator.git
+   cd cpu-scheduler-simulator
+필요한 라이브러리 설치:
 bash
 Sao chép mã
 pip install -r requirements.txt
-3. Cách Chạy Chương Trình
-Khởi Động Chương Trình
-Chạy lệnh sau trong thư mục gốc:
+3. 프로그램 실행 방법
+프로그램 시작
+프로젝트 루트에서 다음 명령을 실행하세요:
+
 bash
 Sao chép mã
 python main.py
-4. Hướng Dẫn Sử Dụng
-Bước 1: Chọn Phương Thức Nhập Dữ Liệu
-Nhập Thủ Công: Điền thông tin như ID, Arrival Time, Burst Time, Priority.
-Tạo Dữ Liệu Ngẫu Nhiên: Đặt số lượng tiến trình và các thông số tối đa.
-Nhập File: Sử dụng file CSV hoặc JSON với cấu trúc hợp lệ.
-Bước 2: Chọn Thuật Toán Lập Lịch
-Chọn thuật toán mong muốn từ danh sách:
-FCFS, SJF, Round Robin, Priority Scheduling, v.v.
-Tùy chỉnh thông số:
-Quantum (cho Round Robin).
-Số hàng đợi (cho Multi-Level Queue).
-Bước 3: Mô Phỏng Lập Lịch
-Nhấn Start để bắt đầu mô phỏng.
-Theo dõi các thông tin:
-Gantt Chart: Thứ tự thực thi tiến trình.
-I/O Operations Log: Nhật ký hoạt động I/O.
-Performance Metrics: Hiệu năng thuật toán.
-Bước 4: Phân Tích và Xuất Kết Quả
-Xem các chỉ số như thời gian chờ trung bình, throughput, số lần chuyển ngữ cảnh.
-Xuất báo cáo chi tiết nếu cần.
-5. Cấu Trúc Dự Án
+4. 사용 방법
+1단계: 데이터 입력 방법 선택
+수동 입력: ID, Arrival Time, Burst Time, Priority 정보를 입력.
+랜덤 생성: 프로세스 개수와 최대값 설정.
+파일 입력: CSV 또는 JSON 형식의 파일을 가져오기.
+2단계: 스케줄링 알고리즘 선택
+사용할 알고리즘을 선택:
+FCFS, SJF, Round Robin, Priority Scheduling 등.
+매개변수 설정:
+Quantum (Round Robin의 경우).
+큐 개수 (다단계 피드백 큐의 경우).
+3단계: 스케줄링 시뮬레이션
+Start 버튼을 눌러 시뮬레이션 시작.
+다음 정보 확인:
+간트 차트 (Gantt Chart): 프로세스 실행 순서 시각화.
+I/O 작업 로그 (I/O Operations Log): I/O 활동 기록.
+성능 지표 (Performance Metrics): 알고리즘 성능 정보.
+4단계: 분석 및 결과 출력
+평균 대기 시간, 처리량, 문맥 전환 횟수 등 지표 확인.
+필요 시 보고서로 저장.
+5. 프로젝트 구조
 plaintext
 Sao chép mã
 cpu-scheduler-simulator/
-├── main.py               # File chính để chạy chương trình
-├── requirements.txt      # Thư viện cần thiết
+├── main.py               # 메인 실행 파일
+├── requirements.txt      # 필수 라이브러리 목록
 ├── src/
-│   ├── process/          # Định nghĩa cấu trúc tiến trình và trạng thái
-│   ├── schedulers/       # Các thuật toán lập lịch
-│   ├── utils/            # Tiện ích hỗ trợ tính toán và log
-│   ├── visualization/    # Hiển thị biểu đồ Gantt
-└── README.md             # Hướng dẫn sử dụng
-6. Ví Dụ Về Input và Output
-Input Mẫu (CSV)
+│   ├── process/          # 프로세스 및 상태 정의
+│   ├── schedulers/       # 스케줄링 알고리즘
+│   ├── utils/            # 유틸리티 및 성능 계산
+│   ├── visualization/    # 간트 차트 시각화
+└── README.md             # 사용 설명서
+6. 입력 및 출력 예시
+입력 예시 (CSV)
 csv
 Sao chép mã
 pid,arrival_time,burst_time,priority
 1,0,5,1
 2,1,3,2
 3,2,8,1
-Output Mẫu
-Gantt Chart: Hiển thị biểu đồ thứ tự thực thi.
-Performance Metrics:
-Thời gian chờ trung bình: 2.67
-Thời gian quay vòng trung bình: 9.33
-Hiệu suất CPU: 85%
-Số lần chuyển ngữ cảnh: 4
-7. Báo Cáo Hiệu Năng
-Chương trình tự động tạo báo cáo chi tiết, bao gồm:
+출력 예시
+간트 차트: 실행 순서를 보여주는 시각화.
+성능 지표:
+평균 대기 시간: 2.67
+평균 반환 시간: 9.33
+CPU 활용도: 85%
+문맥 전환 횟수: 4
+7. 성능 보고서
+프로그램은 자동으로 자세한 성능 보고서를 생성:
 
-Hiệu năng từng thuật toán.
-So sánh giữa các thuật toán qua bảng và biểu đồ.
-Nhận xét và đề xuất.
-8. Liên Hệ
-Nếu gặp vấn đề hoặc cần hỗ trợ:
+각 알고리즘의 성능.
+테이블 및 그래프를 통한 알고리즘 간 비교.
+결론 및 개선 제안.
+8. 문의
+문제가 발생하거나 지원이 필요할 경우:
 
-Email: support@example.com
-GitHub: GitHub Repository
-less
+이메일: support@example.com
+깃허브: GitHub Repository
+markdown
 Sao chép mã
 
 ---
 
-### **Hướng Dẫn Đưa Vào `README.md`**
-1. Mở file `README.md` bằng trình soạn thảo.
-2. Sao chép nội dung trên và dán vào file.
-3. Lưu file và đảm bảo định dạng Markdown được hiển thị đúng (ví dụ: trên GitHub). 
+### **Markdown 주요 요소**
+- **제목**: `#`, `##`, `###`로 표시.
+- **리스트**: `-` 또는 `1.`을 사용.
+- **코드 블록**: `` ``` ``로 감싸기.
+- **강조**: 굵게는 `**텍스트**`, 기울임은 `*텍스트*`.
 
-Bạn có thể chỉnh sửa các liên kết
+Markdown 문법을 준수한 이 템플릿을 복사해서 `README.md`에 붙여넣으면 정확히 표시됩니다.
