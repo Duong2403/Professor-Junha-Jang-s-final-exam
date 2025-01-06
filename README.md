@@ -11,6 +11,33 @@
   - **평균 반환 시간 (Average Turnaround Time).**
   - **문맥 전환 횟수 (Context Switches).**
   - **CPU 활용도 (CPU Utilization).**
+ 
+### **구현된 알고리즘**
+1. **FCFS (First-Come, First-Served)**:
+   - 프로세스가 도착한 순서대로 실행.
+   - 간단한 비선점 방식으로, 실행 중인 프로세스는 종료 시까지 실행됩니다.
+
+2. **SJF (Shortest Job First)**:
+   - 가장 짧은 실행 시간을 가진 프로세스를 우선 실행.
+   - 선점/비선점 모두 지원 가능.
+
+3. **Round Robin (RR)**:
+   - 각 프로세스가 동일한 타임 슬라이스를 할당받아 순환 실행.
+   - 타임 슬라이스 종료 후 Ready 상태로 전환됩니다.
+
+4. **Priority Scheduling**:
+   - 우선순위가 높은 프로세스를 우선 실행.
+   - 선점 또는 비선점 방식으로 동작.
+
+5. **Multi-Level Feedback Queue**:
+   - 여러 큐를 사용하여 프로세스의 우선순위를 동적으로 변경하며 스케줄링.
+
+6. **Rate Monotonic (실시간 스케줄링)**:
+   - 주기가 짧은 작업에 높은 우선순위를 부여하는 고정 우선순위 알고리즘.
+
+7. **Earliest Deadline First (EDF)**:
+   - 가장 빠른 마감 기한을 가진 작업을 우선 실행.
+
 
 ### **지원되는 알고리즘**
 1. **FCFS (First Come First Serve).**
