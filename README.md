@@ -103,3 +103,10 @@ cpu-scheduler-simulator/
 │   ├── visualization/ # 간트 차트 시각화
 └── README.md # 사용 설명서
 ```
+
+## **6. 성능 지표 및 결과 비교**
+프로그램은 다음 성능 지표를 계산하여 각 알고리즘의 효율성을 비교합니다:
+1. **평균 대기 시간 (Average Waiting Time)**
+2. **평균 반환 시간 (Average Turnaround Time)**
+3. **CPU 활용도 (CPU Utilization)**
+4. **문맥 전환 횟수 (Context Switch Count)**
