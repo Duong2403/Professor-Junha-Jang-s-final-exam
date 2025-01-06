@@ -8,40 +8,42 @@ class SchedulingMetrics:
     """
     @staticmethod
     def calculate_metrics(processes: List[Process], total_time: int) -> Dict[str, float]:
-        """Calculate scheduling metrics with error handling"""
+        """Tính toán các số liệu hiệu năng với xử lý lỗi"""
         try:
             if not processes:
                 return {}
-                
-            # Ensure total_time is at least 1
+
+            # Đảm bảo total_time tối thiểu là 1
             total_time = max(1, total_time)
-            
-            # Calculate totals safely
+
+            # Tính toán tổng các giá trị
             total_waiting_time = sum(p.waiting_time for p in processes)
             total_turnaround_time = sum(p.turnaround_time for p in processes)
             total_response_time = sum(
-                p.start_time - p.arrival_time if p.start_time is not None else 0 
+                p.start_time - p.arrival_time if p.start_time is not None else 0
                 for p in processes
             )
             total_burst_time = sum(p.burst_time for p in processes)
             total_context_switches = sum(p.context_switches for p in processes)
-            
-            # Calculate metrics with safe division
-            n_processes = max(1, len(processes))  # Avoid division by zero
-            
+
+            # Tính toán số liệu
+            n_processes = max(1, len(processes))  # Tránh chia cho 0
+            cpu_utilization = (total_burst_time / total_time) * 100  # CPU sử dụng
+            cpu_utilization = min(cpu_utilization, 100)  # Giới hạn không vượt quá 100%
+
             metrics = {
                 "avg_waiting_time": total_waiting_time / n_processes,
                 "avg_turnaround_time": total_turnaround_time / n_processes,
                 "avg_response_time": total_response_time / n_processes,
-                "cpu_utilization": (total_burst_time / total_time) * 100,
+                "cpu_utilization": cpu_utilization,
                 "throughput": len(processes) / total_time,
                 "context_switches": total_context_switches
             }
-            
+
             return {k: round(v, 2) for k, v in metrics.items()}
-            
+
         except Exception as e:
-            print(f"Error calculating metrics: {e}")
+            print(f"Lỗi khi tính toán số liệu: {e}")
             return {
                 "avg_waiting_time": 0,
                 "avg_turnaround_time": 0,
@@ -51,11 +53,12 @@ class SchedulingMetrics:
                 "context_switches": 0
             }
 
+
     @staticmethod
     def generate_report(processes: List[Process], total_time: int) -> str:
-        """Generate detailed performance report"""
+        """Tạo báo cáo chi tiết về hiệu năng"""
         metrics = SchedulingMetrics.calculate_metrics(processes, total_time)
-        
+
         report = [
             "\nScheduling Performance Report",
             "============================",
@@ -70,7 +73,7 @@ class SchedulingMetrics:
             "\nPer-Process Details:",
             "-------------------"
         ]
-        
+
         for p in processes:
             report.append(
                 f"Process {p.pid}:"
@@ -79,5 +82,5 @@ class SchedulingMetrics:
                 f" Response={p.start_time - p.arrival_time if p.start_time else 'N/A'},"
                 f" Context Switches={p.context_switches}"
             )
-            
+
         return "\n".join(report)

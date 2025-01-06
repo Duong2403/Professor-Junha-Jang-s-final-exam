@@ -1874,17 +1874,17 @@ class CPUSchedulerGUI:
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
     def update_metrics_display(self):
-        """Update all metrics displays"""
+        """Cập nhật tất cả các số liệu hiệu năng"""
         if not self.processes:
             self.reset_metrics_display()
             return
-        
-        # Calculate current metrics
+
+        # Tính toán các số liệu hiệu năng
         metrics = self.calculate_current_metrics()
-        
-        # Update real-time labels
+
+        # Cập nhật nhãn hiển thị hiệu năng
         self.cpu_util_label.config(
-            text=f"{metrics['cpu_utilization']:.1f}%"
+            text=f"{metrics['cpu_utilization']:.1f}%"  # Hiển thị giá trị CPU chuẩn hóa
         )
         self.throughput_label.config(
             text=f"{metrics['throughput']:.2f} processes/sec"
@@ -1892,12 +1892,13 @@ class CPUSchedulerGUI:
         self.context_switch_label.config(
             text=str(metrics['context_switches'])
         )
-        
-        # Update averages table
+
+        # Cập nhật bảng số liệu trung bình
         self.update_averages_table(metrics)
-        
-        # Update process details
+
+        # Cập nhật bảng chi tiết tiến trình
         self.update_process_details()
+
 
     def calculate_current_metrics(self):
         """Calculate current performance metrics"""

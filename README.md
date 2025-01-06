@@ -1,56 +1,111 @@
-###설치 및 실행 방법
-환경 설정:
-Python 3.8 이상 버전을 설치하세요.
-다음 명령어를 사용하여 requirements.txt 파일에 명시된 필수 라이브러리를 설치하세요:
+CPU Scheduler Simulator
+1. Mục Đích
+Chương trình mô phỏng các thuật toán lập lịch CPU, hỗ trợ người dùng:
+
+Hiểu rõ cơ chế hoạt động của các thuật toán lập lịch CPU.
+So sánh hiệu năng giữa các thuật toán qua các chỉ số:
+Thời gian chờ trung bình (Average Waiting Time).
+Thời gian quay vòng trung bình (Average Turnaround Time).
+Số lần chuyển ngữ cảnh (Context Switches).
+Hiệu suất sử dụng CPU (CPU Utilization).
+Hỗ trợ các thuật toán:
+FCFS (First Come First Serve).
+SJF (Shortest Job First).
+Round Robin.
+Priority Scheduling (Preemptive & Non-Preemptive).
+Multi-Level Feedback Queue.
+Rate Monotonic (Real-time).
+Earliest Deadline First (Real-time).
+Ngoài ra, chương trình cung cấp các tiện ích:
+
+Nhập dữ liệu thủ công, tạo dữ liệu ngẫu nhiên, hoặc nhập từ file (CSV, JSON).
+Xuất kết quả và báo cáo.
+2. Cách Cài Đặt
+Yêu Cầu Hệ Thống
+Python: Phiên bản >= 3.8.
+Các thư viện cần thiết: Matplotlib, Numpy, Tkinter, v.v.
+Các Bước Cài Đặt
+Clone hoặc tải mã nguồn từ repository:
+bash
+Sao chép mã
+git clone https://github.com/your-repository/cpu-scheduler-simulator.git
+cd cpu-scheduler-simulator
+Cài đặt các thư viện bằng lệnh:
 bash
 Sao chép mã
 pip install -r requirements.txt
-프로그램 실행:
-main.py 파일을 실행하여 시뮬레이션 인터페이스를 엽니다:
+3. Cách Chạy Chương Trình
+Khởi Động Chương Trình
+Chạy lệnh sau trong thư mục gốc:
 bash
 Sao chép mã
 python main.py
-구현된 알고리즘 설명
-FCFS (First-Come-First-Served):
-
-프로세스는 도착 순서대로 처리되며, 선점이 없습니다.
-SJF (Shortest Job First):
-
-실행 시간이 가장 짧은 프로세스가 선택됩니다.
-Round Robin (RR):
-
-각 프로세스는 정해진 시간 간격(타임 슬라이스) 동안 CPU를 할당받습니다.
-우선순위 스케줄링 (Priority Scheduling):
-
-우선순위에 따라 프로세스가 선택됩니다 (선점 또는 비선점 방식 가능).
-MLFQ (Multi-Level Feedback Queue):
-
-여러 우선순위 큐를 사용하며, 우선순위를 점진적으로 낮추는 메커니즘이 적용됩니다.
-Rate Monotonic (RM):
-
-주기가 가장 짧은 프로세스가 선택됩니다 (실시간 시스템용).
-Earliest Deadline First (EDF):
-
-마감 시간이 가장 가까운 프로세스가 우선적으로 실행됩니다.
-기능 사용 방법
-프로세스 정보 입력:
-수동 입력, 랜덤 생성, 또는 파일(CSV 또는 JSON)에서 가져오기.
-알고리즘 선택:
-FCFS, SJF, RR 등 목록에서 알고리즘을 선택하세요.
-타임 슬라이스(Quantum)와 우선순위 조정(Priority Aging) 같은 매개변수를 설정할 수 있습니다.
-결과 표시:
-간트 차트 (Gantt Chart): 실행 스케줄을 시각적으로 나타냅니다.
-성능 통계: 대기 시간, 반환 시간, CPU 사용률 등.
-성능 비교: 알고리즘 간 성능 차이를 보여주는 차트 및 표.
-입출력 예시
-예제 입력:
+4. Hướng Dẫn Sử Dụng
+Bước 1: Chọn Phương Thức Nhập Dữ Liệu
+Nhập Thủ Công: Điền thông tin như ID, Arrival Time, Burst Time, Priority.
+Tạo Dữ Liệu Ngẫu Nhiên: Đặt số lượng tiến trình và các thông số tối đa.
+Nhập File: Sử dụng file CSV hoặc JSON với cấu trúc hợp lệ.
+Bước 2: Chọn Thuật Toán Lập Lịch
+Chọn thuật toán mong muốn từ danh sách:
+FCFS, SJF, Round Robin, Priority Scheduling, v.v.
+Tùy chỉnh thông số:
+Quantum (cho Round Robin).
+Số hàng đợi (cho Multi-Level Queue).
+Bước 3: Mô Phỏng Lập Lịch
+Nhấn Start để bắt đầu mô phỏng.
+Theo dõi các thông tin:
+Gantt Chart: Thứ tự thực thi tiến trình.
+I/O Operations Log: Nhật ký hoạt động I/O.
+Performance Metrics: Hiệu năng thuật toán.
+Bước 4: Phân Tích và Xuất Kết Quả
+Xem các chỉ số như thời gian chờ trung bình, throughput, số lần chuyển ngữ cảnh.
+Xuất báo cáo chi tiết nếu cần.
+5. Cấu Trúc Dự Án
+plaintext
+Sao chép mã
+cpu-scheduler-simulator/
+├── main.py               # File chính để chạy chương trình
+├── requirements.txt      # Thư viện cần thiết
+├── src/
+│   ├── process/          # Định nghĩa cấu trúc tiến trình và trạng thái
+│   ├── schedulers/       # Các thuật toán lập lịch
+│   ├── utils/            # Tiện ích hỗ trợ tính toán và log
+│   ├── visualization/    # Hiển thị biểu đồ Gantt
+└── README.md             # Hướng dẫn sử dụng
+6. Ví Dụ Về Input và Output
+Input Mẫu (CSV)
 csv
 Sao chép mã
 pid,arrival_time,burst_time,priority
 1,0,5,1
 2,1,3,2
-예제 출력:
-간트 차트: 프로세스가 실행되는 순서가 나타납니다.
-통계:
-평균 대기 시간: 2.5.
-평균 반환 시간: 5.0.
+3,2,8,1
+Output Mẫu
+Gantt Chart: Hiển thị biểu đồ thứ tự thực thi.
+Performance Metrics:
+Thời gian chờ trung bình: 2.67
+Thời gian quay vòng trung bình: 9.33
+Hiệu suất CPU: 85%
+Số lần chuyển ngữ cảnh: 4
+7. Báo Cáo Hiệu Năng
+Chương trình tự động tạo báo cáo chi tiết, bao gồm:
+
+Hiệu năng từng thuật toán.
+So sánh giữa các thuật toán qua bảng và biểu đồ.
+Nhận xét và đề xuất.
+8. Liên Hệ
+Nếu gặp vấn đề hoặc cần hỗ trợ:
+
+Email: support@example.com
+GitHub: GitHub Repository
+less
+Sao chép mã
+
+---
+
+### **Hướng Dẫn Đưa Vào `README.md`**
+1. Mở file `README.md` bằng trình soạn thảo.
+2. Sao chép nội dung trên và dán vào file.
+3. Lưu file và đảm bảo định dạng Markdown được hiển thị đúng (ví dụ: trên GitHub). 
+
+Bạn có thể chỉnh sửa các liên kết
