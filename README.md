@@ -39,19 +39,6 @@
    - 가장 빠른 마감 기한을 가진 작업을 우선 실행.
 
 
-### **지원되는 알고리즘**
-1. **FCFS (First Come First Serve).**
-2. **SJF (Shortest Job First).**
-3. **Round Robin.**
-4. **우선순위 스케줄링 (Priority Scheduling)** (선점 및 비선점).
-5. **다단계 피드백 큐 (Multi-Level Feedback Queue).**
-6. **Rate Monotonic (실시간).**
-7. **Earliest Deadline First (실시간).**
-
-추가적으로, 프로그램은 다음과 같은 유용한 기능을 제공합니다:
-- 수동 데이터 입력, 랜덤 데이터 생성, CSV 또는 JSON 파일을 통한 데이터 가져오기.
-- 결과 및 보고서 내보내기.
-
 ---
 
 ## **2. 설치 방법**
@@ -65,7 +52,7 @@
     ```bash
    git clone https://github.com/Duong2403/Professor-Junha-Jang-s-final-exam.git
    cd cpu-scheduler-simulator
-3. 필요한 라이브러리 설치:
+2. 필요한 라이브러리 설치:
    pip install -r requirements.txt
 
 ## **3. 프로그램 실행 방법**
@@ -88,6 +75,16 @@
   - **간트 차트 (Gantt Chart)**: 프로세스 실행 순서 시각화
   - **I/O 작업 로그 (I/O Operations Log)**: I/O 활동 기록
   - **성능 지표 (Performance Metrics)**: 알고리즘 성능 정보
+### **I/O 작업 및 인터럽트 처리**
+1. **I/O 작업**:
+   - 특정 시간에 프로세스가 **Waiting** 상태로 전환되며 I/O 작업이 시작됩니다.
+   - I/O 작업이 완료되면 **Ready** 상태로 복귀합니다.
+
+2. **타이머 인터럽트**:
+   - Round Robin에서 타임 슬라이스가 종료되면 실행 중인 프로세스는 **Ready** 상태로 전환됩니다.
+
+3. **우선순위 인터럽트**:
+   - 높은 우선순위의 프로세스가 도착하면 현재 실행 중인 프로세스를 **Ready** 상태로 전환합니다.
 
 ### **4단계: 분석 및 결과 출력**
 - 평균 대기 시간, 처리량, 문맥 전환 횟수 등 지표 확인
