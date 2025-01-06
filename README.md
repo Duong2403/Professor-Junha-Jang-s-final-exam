@@ -40,15 +40,15 @@
    cd cpu-scheduler-simulator
 3. 필요한 라이브러리 설치:
    pip install -r requirements.txt
-4. 사용 방법
-1단계: 데이터 입력 방법 선택
 
+## **3. 프로그램 실행 방법**
+
+1단계: 데이터 입력 방법 선택
 수동 입력: 프로세스의 ID, Arrival Time, Burst Time, Priority 정보를 직접 입력.
 랜덤 생성: 프로세스 개수와 최대값을 설정하여 자동 생성.
 파일 입력: CSV 또는 JSON 형식의 파일을 불러오기.
 
 2단계: 스케줄링 알고리즘 선택
-
 사용할 알고리즘 선택:
 
 FCFS, SJF, Round Robin, Priority Scheduling 등
