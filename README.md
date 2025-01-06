@@ -35,6 +35,9 @@
 
 ### **설치 절차**
 1. 저장소에서 소스를 복제하거나 다운로드:
-   ```bash
-   git clone https://github.com/your-repository/cpu-scheduler-simulator.git
+   git clone 
    cd cpu-scheduler-simulator
+2. 필요한 라이브러리 설치:
+   pip install -r requirements.txt
+
+   
