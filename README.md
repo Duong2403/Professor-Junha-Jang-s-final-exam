@@ -188,6 +188,11 @@ cpu-scheduler-simulator/
  - 동적 우선순위 조정 메커니즘 추가
 
 ##### 이러한 분석을 통해 각 스케줄링 알고리즘의 특성과 적용 상황에 따른 선택 기준을 제시할 수 있습니다.
+
+
+## 8 . 결과표과 그래프
+
+ 1. 결과표 
 ![Screenshot 2025-01-08 151651](https://github.com/user-attachments/assets/96592e87-10da-48a8-961d-912dde7b6e4c)
 
 
