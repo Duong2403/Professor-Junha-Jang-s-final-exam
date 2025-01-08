@@ -131,38 +131,38 @@ cpu-scheduler-simulator/
  - FCFS/RM/EDF: 10.80 (최악)
  - RR/MLFQ: 8.60-8.80 (양호)
 
->CPU 활용도 (CPU Utilization):
+**CPU 활용도 (CPU Utilization):**
 
-MLFQ: 100% (최적)
-기타 알고리즘: 95.9%
+ - MLFQ: 100% (최적)`
+ - 기타 알고리즘: 95.9%
 
-문맥 교환 횟수 (Context Switches):
+**문맥 교환 횟수 (Context Switches):**
 
-Round Robin: 26회 (최다)
-기타 알고리즘: 10회
+ - Round Robin: 26회 (최다)
+ - 기타 알고리즘: 10회
 
-7.2 알고리즘별 특징 분석
-FCFS (First-Come, First-Served):
+###7.2 알고리즘별 특징 분석###
+**FCFS (First-Come, First-Served):**
 
-장점: 구현이 단순하고 도착 순서 기반 공정성
-단점: 대기/반환 시간이 긴 편
+ - 장점: 구현이 단순하고 도착 순서 기반 공정성
+ - 단점: 대기/반환 시간이 긴 편
 
-SJF (Shortest Job First):
+**SJF (Shortest Job First):**
 
-장점: 최적의 대기/반환 시간 성능
-단점: 긴 프로세스의 자원 기아 현상 위험
+ - 장점: 최적의 대기/반환 시간 성능
+ - 단점: 긴 프로세스의 자원 기아 현상 위험
 
-Round Robin:
+**Round Robin:**
 
-장점: CPU 시간의 공정한 분배, 양호한 응답성
-단점: 잦은 문맥 교환 (26회)
+ - 장점: CPU 시간의 공정한 분배, 양호한 응답성
+ - 단점: 잦은 문맥 교환 (26회)
 
 Priority Scheduling:
 
 장점: 우선순위 기반의 유연한 스케줄링
 단점: 낮은 우선순위 프로세스의 기아 현상 위험
 
-MLFQ (Multi-Level Feedback Queue):
+**MLFQ (Multi-Level Feedback Queue):**
 
 장점: 최적의 CPU 활용도 (100%)
 단점: 긴 평균 대기 시간 (18.70)
@@ -172,7 +172,7 @@ Real-time Schedulers (RM & EDF):
 장점: 실시간 태스크의 데드라인 보장
 단점: 일반 태스크에 대한 성능 최적화 부족
 
-7.3 결론 및 개선 제안
+###7.3 결론 및 개선 제안###
 주요 결론:
 
 SJF가 시간 효율성 측면에서 최고 성능
