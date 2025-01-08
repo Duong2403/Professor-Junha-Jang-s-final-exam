@@ -172,15 +172,15 @@ cpu-scheduler-simulator/
  - 장점: 실시간 태스크의 데드라인 보장
  - 단점: 일반 태스크에 대한 성능 최적화 부족
 
-### 7.3 결론 및 개선 제안###
+### 7.3 결론 및 개선 제안
 #### 주요 결론:
 
-SJF가 시간 효율성 측면에서 최고 성능
-MLFQ가 CPU 활용도 측면에서 최적
-Round Robin이 시분할 시스템에 적합
-Priority/Real-time 스케줄러가 특수 용도에 적합
+-SJF가 시간 효율성 측면에서 최고 성능
+-MLFQ가 CPU 활용도 측면에서 최적
+-Round Robin이 시분할 시스템에 적합
+-Priority/Real-time 스케줄러가 특수 용도에 적합
 
-개선 제안:
+#### 개선 제안:
 
 SJF/Priority 스케줄러에 에이징 메커니즘 도입
 Round Robin의 타임 퀀텀 최적화
