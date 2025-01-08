@@ -192,8 +192,13 @@ cpu-scheduler-simulator/
 
 ## 8 . 결과표과 그래프
 
- 1. 결과표 
+**1. 결과표**
 ![Screenshot 2025-01-08 151651](https://github.com/user-attachments/assets/96592e87-10da-48a8-961d-912dde7b6e4c)
+
+![1](https://github.com/user-attachments/assets/86ccce5d-9cb4-4ba3-8710-646bdceede29)
+**2. Gantt Chart**
+![Uploading 2.png…]()
+
 
 
 
