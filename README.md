@@ -175,10 +175,10 @@ cpu-scheduler-simulator/
 ### 7.3 결론 및 개선 제안
 #### 주요 결론:
 
--SJF가 시간 효율성 측면에서 최고 성능
--MLFQ가 CPU 활용도 측면에서 최적
--Round Robin이 시분할 시스템에 적합
--Priority/Real-time 스케줄러가 특수 용도에 적합
+ -SJF가 시간 효율성 측면에서 최고 성능
+ -MLFQ가 CPU 활용도 측면에서 최적
+ -Round Robin이 시분할 시스템에 적합
+ -Priority/Real-time 스케줄러가 특수 용도에 적합
 
 #### 개선 제안:
 
