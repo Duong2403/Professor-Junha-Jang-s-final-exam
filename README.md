@@ -115,9 +115,9 @@ cpu-scheduler-simulator/
 ### **7.1 실험 결과 분석**
 **대기 시간 분석 (Average Waiting Time):**
 
-SJF: 5.70 (최적)
-MLFQ: 18.70 (최악)
-기타 알고리즘: 9.00-10.80 범위
+ - SJF: 5.70 (최적)
+ - MLFQ: 18.70 (최악)
+ - 기타 알고리즘: 9.00-10.80 범위
 
 반환 시간 분석 (Average Turnaround Time):
 
