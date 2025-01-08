@@ -112,8 +112,8 @@ cpu-scheduler-simulator/
 4. **문맥 전환 횟수 (Context Switch Count)**
 
 ## **7. 분석 결과 및 성능 비교**
-7.1 실험 결과 분석
-  -대기 시간 분석 (Average Waiting Time):
+### **7.1 실험 결과 분석**
+**대기 시간 분석 (Average Waiting Time):**
 
 SJF: 5.70 (최적)
 MLFQ: 18.70 (최악)
