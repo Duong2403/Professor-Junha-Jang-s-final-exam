@@ -119,19 +119,19 @@ cpu-scheduler-simulator/
  - MLFQ: 18.70 (최악)
  - 기타 알고리즘: 9.00-10.80 범위
 
-반환 시간 분석 (Average Turnaround Time):
+**반환 시간 분석 (Average Turnaround Time):**
 
-SJF: 10.40 (최적)
-FCFS/RM/EDF: 15.50 (최악)
-MLFQ: 13.50 (양호)
+ - SJF: 10.40 (최적)
+ - FCFS/RM/EDF: 15.50 (최악)
+ - MLFQ: 13.50 (양호)
 
-응답 시간 분석 (Average Response Time):
+**응답 시간 분석 (Average Response Time):**
 
-SJF: 5.70 (최적)
-FCFS/RM/EDF: 10.80 (최악)
-RR/MLFQ: 8.60-8.80 (양호)
+ - SJF: 5.70 (최적)
+ - FCFS/RM/EDF: 10.80 (최악)
+ - RR/MLFQ: 8.60-8.80 (양호)
 
-CPU 활용도 (CPU Utilization):
+>CPU 활용도 (CPU Utilization):
 
 MLFQ: 100% (최적)
 기타 알고리즘: 95.9%
