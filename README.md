@@ -180,9 +180,8 @@ cpu-scheduler-simulator/
  -Round Robin이 시분할 시스템에 적합
  -Priority/Real-time 스케줄러가 특수 용도에 적합
 
-#### 개선 제안:
-
-SJF/Priority 스케줄러에 에이징 메커니즘 도입
+#### 개선 제안: 
+ - SJF/Priority 스케줄러에 에이징 메커니즘 도입
 Round Robin의 타임 퀀텀 최적화
 MLFQ의 대기 시간 개선
 하이브리드 스케줄링 구현
